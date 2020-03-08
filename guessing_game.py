@@ -8,15 +8,16 @@ def start_game():
     print("Welcome to the Guessing Game!")
 
     high_score = 0
-    guess_count = 0
-    play = 'Y'
+    guess_count = 1
+    success = 0
+    play = 'y'
 
     # 2) Store a random number as the answer/solution
-    answer = random.randint(0,10)
+    answer = random.randint(1,10)
 
     # 3) Continuously prompt the player for a guess.
     
-    while play == 'Y':
+    while play.lower() == 'y':
         guess = input("Please guess a number between 1 and 10: ")
         guess = int(guess)
 
@@ -37,11 +38,25 @@ def start_game():
         # 4) Once the guess is correct, stop looping, inform the user they "Got it"
         elif guess == answer:
             print("Got it!")
+            #increment successful games by 1
+            success = success + 1
             # High Score Check
-            if guess_count < high_score:
+            if success == 1:
+                high_score = guess_count
+            elif guess_count < high_score:
                 high_score = guess_count
             # 4a) Show how many attempts it took them to get the correct number
             print("You took {} attempts to get the correct number.".format(guess_count))
+            # Display High Score
+            print("Your current high score is {} attempts before correctly guessing.".format(high_score))
+            # Reset guess count
+            guess_count = 0
+            # Ask User if they would like to play again
+            play = input("Would you like to play again? Y or N?  ")
+            if play.lower() != 'y':
+                print("Thanks for playing, your best game was {} attempt(s)! See you next time!".format(high_score))
+    #else: 
+        #print("Thanks for playing, your best game was {} attempts! See you next time!".format(high_score))
 
     """Psuedo-code Hints
     
