@@ -4,10 +4,10 @@ import time
 def start_game():
     # 1) Display an intro/welcome message to the player
     print("""
-    -----------------------------------
-    | Welcome to the GUESSING GAME!!! |
-    -----------------------------------
-    """)
+-----------------------------------
+| Welcome to the GUESSING GAME!!! |
+-----------------------------------
+""")
 
     # Declare Default Variable Values
     high_score = 0
@@ -22,27 +22,59 @@ def start_game():
     # 3) Continuously prompt the player for a guess.
     while play.lower() == 'y':
         time.sleep(.5)
-        guess = input("Please guess a number between 1 and 10: ")
+        if guess_count == 1 and error == 0:
+            if high_score >= 3:
+                print("""
+The score to beat is {} attempt(s)! Do it in {} tries or fewer to be the new Guessing Game Champ!""".format(high_score, high_score - 1))
+                time.sleep(1.5)
+            elif high_score == 2:
+                print("""
+The score to beat is {} attempt(s)! Do it in {} try to show off your DIGITAL TELEPATHY!!!""".format(high_score, high_score -1 ))
+                time.sleep(1.5)
+            elif high_score == 1:
+                print("""
+Great job at setting the high score to {} attempt! Try to do it again!""".format(high_score))
+                time.sleep(1.5)
+            elif high_score == 0:
+                print("""
+The high score is currently {}, which is impossible to achieve, so get as close as you can to 1!""".format(high_score))
+                time.sleep(1.5)
+        guess = input("""
+Please guess a number between 1 and 10: """)
         print("Checking your guess")
         time.sleep(.25)
         print(".")
         time.sleep(.25)
         print(".")
         time.sleep(.25)
+        
         # Error counter (Easter Egg)
         if error > 5 and error < 7:
+            time.sleep(.5)
+            print("8-|")
             time.sleep(.5)
             print("Y tho?")
             error = 7
             time.sleep(.5)
         elif error > 8 and error < 10:
             time.sleep(.5)
+            print("9_9")
+            time.sleep(.5)
             print("Seriously...")
             error = 9
             time.sleep(.5)
         elif error > 10:
             time.sleep(.5)
-            print("Aight I'm out, system shutting down ☉_☉")
+            print("☉_☉")
+            time.sleep(.5)
+            print("Aight I'm out, system shutting down...")
+            time.sleep(.5)
+            print("...")
+            time.sleep(.5)
+            print("..")
+            time.sleep(.5)
+            print(".")
+            time.sleep(.5)
             break
         try:
             guess = int(guess)
@@ -57,12 +89,27 @@ def start_game():
             time.sleep(2)
         else:
             if guess < 1:
+                print("X")
                 time.sleep(.5)
-                print("That guess below 1!")
+                print("That guess is below 1!")
+                time.sleep(.5)
                 error = error + 1
-            elif guess > 10:
+            elif guess > 10 and guess < 9000:
+                print("X")
                 time.sleep(.5)
                 print("That guess is above 10!")
+                time.sleep(.5)
+                error = error + 1
+            # Over 9K easter gg per request :)
+            elif guess > 9000:
+                print("Vegeta! What did you say the guess was!?")
+                time.sleep(1)
+                print("It's over 9000!")
+                time.sleep(1)
+                print("For real though, that guess is way above 10")
+                time.sleep(1)
+                print("You are gonna stress Vegeta out, please chill lol")
+                time.sleep(1)
                 error = error + 1
 
             # 3a) If the guess greater than the solution, display to the player "It's lower"
@@ -110,7 +157,7 @@ def start_game():
                 print("You took {} attempts to get the correct number".format(guess_count))
                 time.sleep(1)
                 # Display High Score
-                print("Your current best is {} attempt(s) before guessing the correct number".format(high_score))
+                print("Your current best is {} attempt(s)".format(high_score))
                 time.sleep(1)
                 # Reset guess count
                 guess_count = 1
@@ -119,7 +166,13 @@ def start_game():
                 if play.lower() != 'y':
                     # 5) Let the player know the game is ending, or something that indicates the game is over
                     print("Thanks for playing, your best game was {} attempt(s)! See you next time!".format(high_score))
-                    time.sleep(2.5)
+                    time.sleep(1.5)
+                    print("...")
+                    time.sleep(.5)
+                    print("..")
+                    time.sleep(.5)
+                    print(".")
+                    time.sleep(.5)
 
 if __name__ == '__main__':
     # Kick off the program by calling the start_game function.
