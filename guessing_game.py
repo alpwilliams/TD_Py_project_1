@@ -2,7 +2,7 @@ import random
 import time
 
 def start_game():
-    # 1) Display an intro/welcome message to the player
+    # Display an intro/welcome message to the player
     print("""
 -----------------------------------
 | Welcome to the GUESSING GAME!!! |
@@ -16,10 +16,10 @@ def start_game():
     error = 0
     play = 'y'
 
-    # 2) Store a random number as the answer/solution
+    # (Initial) Store a random number as the answer/solution
     answer = random.randint(1,10)
 
-    # 3) Continuously prompt the player for a guess.
+    # Continuously prompt the player for a guess.
     while play.lower() == 'y':
         time.sleep(.5)
         if guess_count == 1 and error == 0:
@@ -48,7 +48,7 @@ Please guess a number between 1 and 10: """)
         print(".")
         time.sleep(.25)
         
-        # Error counter (Easter Egg)
+        # Error counter Easter Egg
         if error > 5 and error < 7:
             time.sleep(.5)
             print("8-|")
@@ -100,7 +100,7 @@ Please guess a number between 1 and 10: """)
                 print("That guess is above 10!")
                 time.sleep(.5)
                 error = error + 1
-            # Over 9K easter gg per request :)
+            # Over 9K easter egg per request :)
             elif guess > 9000:
                 print("Vegeta! What did you say the guess was!?")
                 time.sleep(1)
@@ -112,31 +112,31 @@ Please guess a number between 1 and 10: """)
                 time.sleep(1)
                 error = error + 1
 
-            # 3a) If the guess greater than the solution, display to the player "It's lower"
+            # If the guess greater than the solution, display to the player "It's lower"
             elif guess > answer:
                 print(".")
                 time.sleep(.5)
                 print("It's lower")
                 time.sleep(.25)
-                # increment number of guesses by 1
+                # Increment number of guesses by 1
                 guess_count = guess_count + 1
-                # reset error counter
+                # Reset error counter
                 error = 0
                 continue
 
-            # 3b) If the guess is less than the solution, display to the player "It's higher"
+            # If the guess is less than the solution, display to the player "It's higher"
             elif guess < answer:
                 print(".")
                 time.sleep(.5)
                 print("It's higher")
                 time.sleep(.25)
-                # increment number of guesses by 1
+                # Increment number of guesses by 1
                 guess_count = guess_count + 1
-                # reset error counter
+                # Reset error counter
                 error = 0
                 continue
 
-            # 4) Once the guess is correct, stop looping, inform the user they "Got it"
+            # Once the guess is correct, stop looping, inform the user they "Got it"
             elif guess == answer:
                 time.sleep(.25)
                 print("!")
@@ -145,7 +145,7 @@ Please guess a number between 1 and 10: """)
                 time.sleep(1.5)
                 print("Congratulations!!!")
                 time.sleep(1.5)
-                #increment successful games by 1
+                # Increment successful games by 1
                 success = success + 1
                 # High Score Check
                 if success == 1:
@@ -153,18 +153,20 @@ Please guess a number between 1 and 10: """)
                 elif guess_count < high_score:
                     high_score = guess_count
 
-                # 4a) Show how many attempts it took them to get the correct number
+                # Show how many attempts it took them to get the correct number
                 print("You took {} attempts to get the correct number".format(guess_count))
                 time.sleep(1)
                 # Display High Score
                 print("Your current best is {} attempt(s)".format(high_score))
                 time.sleep(1)
-                # Reset guess count
+                # Reset guess count for possible new game
                 guess_count = 1
+                # Refresh answer for possible new game
+                answer = random.randint(1,10)
                 # Ask User if they would like to play again
                 play = input("Would you like to play again? Please type Y to try again and N to exit the game:  ")
                 if play.lower() != 'y':
-                    # 5) Let the player know the game is ending, or something that indicates the game is over
+                    # Let the player know the game is ending, or something that indicates the game is over
                     print("Thanks for playing, your best game was {} attempt(s)! See you next time!".format(high_score))
                     time.sleep(1.5)
                     print("...")
